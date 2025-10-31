@@ -1,0 +1,12 @@
+dataset:
+    name: "ctc"
+    dataset_name: "PhC-C2DH-U373"
+    data_dir: "~/data/"
+    channels: [0, 0]
+
+preprocess:
+    normalize: true
+
+eval:
+    erosion_pixels: 50
+    num_seq: 3

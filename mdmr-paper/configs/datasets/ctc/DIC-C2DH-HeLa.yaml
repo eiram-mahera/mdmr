@@ -1,0 +1,13 @@
+dataset:
+    name: "ctc"
+    dataset_name: "DIC-C2DH-HeLa"
+    data_dir: "~/data/"
+    channels: [0, 0]
+
+preprocess:
+    normalize: true
+
+eval:
+    erosion_pixels: 25
+    num_seq: 3
+

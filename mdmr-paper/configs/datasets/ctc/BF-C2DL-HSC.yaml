@@ -1,0 +1,32 @@
+dataset:
+    name: "ctc"
+    dataset_name: "BF-C2DL-HSC"
+    data_dir: "~/data/"
+    channels: [0, 0]
+    # crop boxes are (y, x, h, w) per video
+    crop_boxes:
+      "01": [399, 40, 399, 152]
+      "02": [231, 40, 642, 271]
+
+#      # crop boxes experimented with:
+#      "bbox_01": [ 399, 40, 399, 152 ],
+#      "bbox_02": [ 231, 40, 642, 271 ],
+#
+#       "bbox_01": [ 400, 41, 400, 153 ],
+#       "bbox_02": [ 232, 41, 643, 272 ],
+#
+#       "bbox_01": [ 400, 41, 399, 152 ],
+#       "bbox_02": [ 232, 41, 642, 271 ],
+#
+#       "bbox_01": [ 400, 40, 400, 152 ],
+#       "bbox_02": [ 230, 40, 642, 272 ],
+
+preprocess:
+    normalize: true
+
+eval:
+    # BF needs uncropping before CTC SEG
+    require_uncrop: true
+    # No erosion
+    erosion_px: 0
+    num_seq: 4
