@@ -1,6 +1,6 @@
-# MDMR: Maximize Diversity Minimize Redundancy
+# MDMR: Maximum Diversity Minimum Redundancy
 
-This repository is the official implementation of the MDMR algorithm proposed in the paper.  
+This repository contains the official implementation of the MDMR algorithm, as proposed in the paper [MDMR: Balancing Diversity and Redundancy for Annotation-Efficient Fine-Tuning of Pretrained Cell Segmentation Models](https://www.biorxiv.org/content/10.1101/2025.11.04.686267v1).  
 
 - The **`mdmr/`** folder provides a minimal standalone implementation of MDMR.  
 - The **`paper/`** folder contains all code, scripts, configs, and instructions to reproduce the experiments and results from our paper.  
@@ -51,12 +51,18 @@ please see [paper/README.md](mdmr-paper/README.md).
 If you use the MDMR algorithm in your work, please cite:
 
 ```bibtex
-@article{she2025mdmr,
-  title   = {MDMR: BALANCING DIVERSITY AND REDUNDANCY FOR ANNOTATION-EFFICIENT FINE-TUNING OF PRETRAINED CELL SEGMENTATION MODELS},
-  author  = {Eiram Mahera Sheikh, Alaa Tharwat, Constanze Schwan, Wolfram Schenck},
-  journal = {name},
-  year    = {year}
+@article {Sheikh2025.11.04.686267,
+	author = {Sheikh, Eiram Mahera and Tharwat, Alaa and Schwan, Constanze and Schenck, Wolfram},
+	title = {MDMR: Balancing Diversity and Redundancy for Annotation-Efficient Fine-Tuning of Pretrained Cell Segmentation Models},
+	elocation-id = {2025.11.04.686267},
+	year = {2025},
+	doi = {10.1101/2025.11.04.686267},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2025/11/05/2025.11.04.686267},
+	eprint = {https://www.biorxiv.org/content/early/2025/11/05/2025.11.04.686267.full.pdf},
+	journal = {bioRxiv}
 }
+
 ```
 
 ---
