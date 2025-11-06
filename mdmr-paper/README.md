@@ -194,7 +194,4 @@ Results are appended to csv file with header:
 * **Metrics**: define new metrics under `src/mdmr_paper/evaluation/`.
 * **Training**: extend `src/mdmr_paper/training/` for new training regimes.
 
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ---
