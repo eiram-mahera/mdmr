@@ -194,24 +194,6 @@ Results are appended to csv file with header:
 * **Metrics**: define new metrics under `src/mdmr_paper/evaluation/`.
 * **Training**: extend `src/mdmr_paper/training/` for new training regimes.
 
----
-
-## Citation
-
-If you use this code in your work, please cite:
-
-```bibtex
-@article{your2025mdmr,
-  title   = {MDMR: Maximize Diversity Minimize Redundancy for Annotation-Efficient Cell Instance Segmentation},
-  author  = {Your Name and Collaborators},
-  journal = {In submission},
-  year    = {2025}
-}
-```
-
----
-
-## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
