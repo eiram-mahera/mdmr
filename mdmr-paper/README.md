@@ -51,7 +51,7 @@ mrmd/                                              # Repository root
 - (Optional) NVIDIA driver if you want GPU acceleration
 - Clone the repository
 ```
-git clone https://github.com/yourname/mdmr.git
+git clone https://github.com/eiram-mahera/mdmr.git
 cd mdmr/mdmr-paper
 ```
 ---
