@@ -1,19 +1,17 @@
 """
-MDMR: Maximize Diversity Minimize Redundancy
+MDMR: Maximum Diversity Minimum Redundancy
 =============================================
 
 This module implements the MDMR subset selection algorithm introduced in:
 
-    "MDMR: Maximize Diversity Minimize Redundancy for Annotation Efficient Cell Instance Segmentation"
+    "MDMR: Balancing Diversity and Redundancy for Annotation-Efficient Fine-Tuning of Pretrained Cell Segmentation Models."
     by Eiram Mahera Sheikh, Alaa Tharwat, Constanze Schwan, Wolfram Schenck, 2025.
 
-MDMR is a non-iterative, unsupervised method designed for extremely low annotation budgets.
-It selects a small, diverse, and minimally redundant subset of samples from a pool of unlabeled
-data, making it particularly suitable for the fine-tuning of large pre-trained models.
+MDMR selects a small, maximally diverse, and minimally redundant subset of samples from a pool of unlabeled data,
+making it particularly suitable for active learning.
 
 Core Idea
 ---------
-- Uses feature embeddings (e.g., Cellpose style vectors).
 - Constructs a similarity matrix via an RBF kernel.
 - Selects the most "central" sample first, then iteratively selects
   samples that maximize diversity while minimizing redundancy.
@@ -33,21 +31,13 @@ Outputs
 - List[int]
     Indices of the selected subset.
 
-Usage Example
--------------
->>> from mdmr.mdmr import MDMR
->>> import numpy as np
->>> X = np.random.randn(100, 256)   # 100 samples, 256-dim features
->>> selector = MDMR(features=X, seed=42)
->>> selected = selector.select(budget=2)
->>> print("Chosen indices:", selected)
-
 """
 
 
 from __future__ import annotations
-import numpy as np
 from typing import List, Optional, Sequence, Union
+import numpy as np
+from sklearn.metrics.pairwise import rbf_kernel
 
 
 class MDMR:
@@ -99,11 +89,10 @@ class MDMR:
             self.rng = np.random.default_rng(seed)
 
         # Step 1) Build the RBF kernel matrix
-        self.K = self._build_kernel_matrix(X)
+        self.K = rbf_kernel(X, gamma=self.gamma)
 
         # Step 2) Find the most central sample c
-        # Centrality defined by row-sum: c = argmax_i sum_j K[i, j]
-        self.c = int(np.argmax(self.K.sum(axis=1)))
+        self.c = int(np.argmax(np.sum(self.K, axis=1)))
 
         # Step 3) Initialize the selected set S
         self.S: List[int] = [self.c]
@@ -111,35 +100,6 @@ class MDMR:
         # bookkeeping
         self.in_S_mask = np.zeros(self.N, dtype=bool)
         self.in_S_mask[self.c] = True
-
-    def _build_kernel_matrix(self, X):
-        # K[i,j] = exp( -gamma * ||xi - xj||^2 )
-        # where ||xi - xj||^2 = ||xi||^2 + ||xj||^2 - 2 xi·xj.
-        # Compute the pairwise squared distances D2, then transform in-place.
-
-        # Make X contiguous to help the BLAS multiply (X @ X.T).
-        X = np.ascontiguousarray(X)
-
-        # Row-wise squared norms: shape (N,)
-        sq = np.einsum("nd,nd->n", X, X)
-
-        # Pairwise squared distances: D2 = sq[:,None] + sq[None,:] - 2*(X @ X.T)
-        D2 = sq[:, None] + sq[None, :] - 2.0 * (X @ X.T)
-
-        # Numerical safety: clamp tiny negatives to zero (can occur from roundoff)
-        np.maximum(D2, 0.0, out=D2)
-
-        # In-place transform: D2 <- exp( -gamma * D2 ), so D2 now holds K
-        D2 *= -self.gamma
-        np.exp(D2, out=D2)
-
-        # Cast once to target dtype without creating another full copy
-        K = D2.astype(self.dtype, copy=False)
-
-        # For stability/consistency set diagonal to exactly 1
-        np.fill_diagonal(K, 1.0)
-
-        return K
 
     def select(self, budget: int = 2) -> List[int]:
         """
