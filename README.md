@@ -1,6 +1,6 @@
 # CGMD: Centrality-Guided Maximum Diversity
 
-This repository contains the official implementation of the CGMD algorithm, as proposed in the paper [CGMD: Centrality-Guided Maximum Diversity for Annotation-Efficient Fine-Tuning of Pretrained Cell Segmentation Models](https://www.biorxiv.org/content/10.1101/2025.11.04.686267v1).  
+This repository contains the official implementation of the CGMD algorithm, as proposed in the paper [CGMD: Centrality-Guided Maximum Diversity for Annotation-Efficient Fine-Tuning of Pretrained Cell Segmentation Models](https://www.biorxiv.org/content/10.1101/2025.11.04.686267v2).  
 
 - The **`cgmd/`** folder provides a minimal standalone implementation of the CGMD algorithm.  
 - The **`paper/`** folder contains all code, scripts, configs, and instructions to reproduce the experiments and results from our paper.  
