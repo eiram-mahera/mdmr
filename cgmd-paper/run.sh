@@ -9,7 +9,7 @@ set -e
 # conda activate mrmd
 
 # Run the fine-tuning script
-python -m src.mdmr_paper.scripts.fine_tune \
+python -m src.cgmd_paper.scripts.fine_tune \
   --dataset-config configs/datasets/ctc/DIC-C2DH-HeLa.yaml \
   --model-type cyto2 \
   --selector ALL \

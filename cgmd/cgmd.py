@@ -1,20 +1,18 @@
 """
-MDMR: Maximum Diversity Minimum Redundancy
+CGMD: Centrality-Guided Maximum Diversity
 =============================================
 
-This module implements the MDMR subset selection algorithm introduced in:
+This module implements the CGMD subset selection algorithm introduced in:
 
-    "MDMR: Balancing Diversity and Redundancy for Annotation-Efficient Fine-Tuning of Pretrained Cell Segmentation Models."
+    "CGMD: Centrality-Guided Maximum Diversity for Annotation-Efficient Fine-Tuning of Pretrained Cell Segmentation Models"
     by Eiram Mahera Sheikh, Alaa Tharwat, Constanze Schwan, Wolfram Schenck, 2025.
 
-MDMR selects a small, maximally diverse, and minimally redundant subset of samples from a pool of unlabeled data,
-making it particularly suitable for active learning.
+CGMD selects a small, maximally diverse subset of samples from a pool of unlabeled data, making it particularly suitable for active learning.
 
 Core Idea
 ---------
 - Constructs a similarity matrix via an RBF kernel.
-- Selects the most "central" sample first, then iteratively selects
-  samples that maximize diversity while minimizing redundancy.
+- Selects the most "central" sample first, then iteratively selects samples that maximize diversity.
 - Includes tie-breaking with randomization for reproducibility.
 
 Inputs
@@ -40,9 +38,9 @@ import numpy as np
 from sklearn.metrics.pairwise import rbf_kernel
 
 
-class MDMR:
+class CGMD:
     """
-    MDMR: Maximize Diversity Minimize Redundancy
+    CGMD: Centrality-Guided Maximum Diversity
     """
 
     def __init__(
@@ -104,7 +102,7 @@ class MDMR:
     def select(self, budget: int = 2) -> List[int]:
         """
         :param budget: number of samples to query
-        :return: indices of the samples selected by the MDMR algorithm
+        :return: indices of the samples selected by the cgmd algorithm
         """
         # Validate input
         if not isinstance(budget, int) or budget < 0:
@@ -164,7 +162,7 @@ class MDMR:
 if __name__ == "__main__":
     X = np.random.default_rng(0).standard_normal((200, 64))
 
-    selector = MDMR(X)         # builds K, finds central sample, S = [c]
+    selector = CGMD(X)         # builds K, finds central sample, S = [c]
 
     s1 = selector.select(5)     # select 5 indices
     print("s1:", s1)

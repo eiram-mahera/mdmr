@@ -1,7 +1,7 @@
 [project]
-name = "mdmr"
+name = "cgmd"
 version = "0.1.0"
-description = "MDMR: Maximize Diversity Minimize Redundancy"
+description = "CGMD: Centrality-Guided Maximum Diversity"
 readme = "README.md"
 requires-python = ">=3.8"
 
@@ -32,16 +32,16 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = [
-  "mdmr",
-  "mdmr_paper",
+  "cgmd",
+  "cgmd_paper",
 ]
 
 [tool.setuptools.package-dir]
-mdmr = "mdmr"
-mdmr_paper = "mdmr-paper/src/mdmr_paper"
+cgmd = "cgmd"
+cgmd_paper = "cgmd-paper/src/cgmd_paper"
 
 [project.scripts]
 # Optional: CLI entry points (available after installing with [paper])
-mrmd-fine-tune = "mdmr_paper.scripts.fine_tuning:app"
-mrmd-eval   = "mdmr_paper.scripts.eval_pretrained:app"
-mrmd-fs     = "mdmr_paper.scripts.train_fully_supervised:app"
+cgmd-fine-tune = "cgmd_paper.scripts.fine_tuning:app"
+cgmd-eval   = "cgmd_paper.scripts.eval_pretrained:app"
+cgmd-fs     = "cgmd_paper.scripts.train_fully_supervised:app"

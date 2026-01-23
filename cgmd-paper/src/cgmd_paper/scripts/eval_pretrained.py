@@ -1,4 +1,4 @@
-# mdmr-paper/src/scripts/eval_pretrained.py
+# cgmd-paper/src/scripts/eval_pretrained.py
 from __future__ import annotations
 
 import csv

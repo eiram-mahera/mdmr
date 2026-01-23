@@ -26,7 +26,7 @@ logger = setup_logger("fully_supervised")
 # ----------------------------- helpers ----------------------------- #
 
 def _project_root() -> str:
-    # <repo>/mdmr-paper/src/mdmr_paper/scripts/fully_supervised.py -> <repo>/mdmr-paper
+    # <repo>/cgmd-paper/src/cgmd_paper/scripts/fully_supervised.py -> <repo>/cgmd-paper
     return os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 

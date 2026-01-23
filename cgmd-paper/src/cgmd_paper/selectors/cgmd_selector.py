@@ -2,9 +2,9 @@ from __future__ import annotations
 import numpy as np
 from typing import List, Optional, Sequence, Union
 
-from mdmr.mdmr import MDMR
+from cgmd.cgmd import CGMD
 
-class MDMRSelector:
+class CGMDSelector:
     def __init__(
             self,
             features: Union[np.ndarray, Sequence[float], Sequence[Sequence[float]]],
@@ -13,7 +13,7 @@ class MDMRSelector:
             gamma: Optional[float] = None,
             dtype: str = "float64",
     ):
-        self._algo = MDMR(features=features, gamma=gamma, dtype=dtype, seed=seed)
+        self._algo = CGMD(features=features, gamma=gamma, dtype=dtype, seed=seed)
 
     def select(self, budget: int = 2) -> List[int]:
         return self._algo.select(budget=budget)

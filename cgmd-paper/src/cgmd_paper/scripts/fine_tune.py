@@ -1,4 +1,4 @@
-# mdmr-paper/src/mdmr_paper/scripts/fine_tune.py
+# cgmd-paper/src/cgmd_paper/scripts/fine_tune.py
 from __future__ import annotations
 
 import os
@@ -61,7 +61,7 @@ def _merge_selector_kwargs(sel_args: List[str] | None, json_blob: str | None) ->
 
 
 def _project_root() -> str:
-    # <repo>/mdmr-paper/src/mdmr_paper/scripts/fine_tune.py -> <repo>/mdmr-paper
+    # <repo>/cgmd-paper/src/cgmd_paper/scripts/fine_tune.py -> <repo>/cgmd-paper
     return os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 
@@ -145,8 +145,8 @@ def run(
     # subset selectors
     selector: str = typer.Option(
         "ALL",
-        help="Selector name(s): single (e.g., 'MDMR'), comma-separated "
-             "(e.g., 'MDMR,Random'), or 'ALL' for all available shortcuts. "
+        help="Selector name(s): single (e.g., 'CGMD'), comma-separated "
+             "(e.g., 'CGMD,Random'), or 'ALL' for all available shortcuts. "
              "You may also pass a fully-qualified 'module.path:ClassName'."
     ),
     sel_arg: List[str] = typer.Option(None, help="Selector arg as key=value (repeatable)"),

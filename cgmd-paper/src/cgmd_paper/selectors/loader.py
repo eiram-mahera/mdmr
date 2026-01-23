@@ -5,14 +5,14 @@ import numpy as np
 from importlib import import_module
 
 _SHORTCUTS = {
-    "MDMR": ("mdmr_paper.selectors.mdmr_selector", "MDMRSelector"),
-    "KMC": ("mdmr_paper.selectors.kmeans_clustering_selector", "KMeansClusteringSelector"),
-    "DPP": ("mdmr_paper.selectors.dpp_selector", "DPPSelector"),
-    "CORESET": ("mdmr_paper.selectors.core_set_selector", "CoreSetSelector"),
-    "FADS": ("mdmr_paper.selectors.fads_selector", "FADSSelector"),
-    "FACLOC": ("mdmr_paper.selectors.facility_location_selector", "FacilityLocationSelector"),
-    "TYPICLUST": ("mdmr_paper.selectors.typiclust_selector", "TypiClustSelector"),
-    "RANDOM": ("mdmr_paper.selectors.random_selector", "RandomSelector"),
+    "CGMD": ("cgmd_paper.selectors.cgmd_selector", "CGMDSelector"),
+    "KMC": ("cgmd_paper.selectors.kmeans_clustering_selector", "KMeansClusteringSelector"),
+    "DPP": ("cgmd_paper.selectors.dpp_selector", "DPPSelector"),
+    "CORESET": ("cgmd_paper.selectors.core_set_selector", "CoreSetSelector"),
+    "FADS": ("cgmd_paper.selectors.fads_selector", "FADSSelector"),
+    "FACLOC": ("cgmd_paper.selectors.facility_location_selector", "FacilityLocationSelector"),
+    "TYPICLUST": ("cgmd_paper.selectors.typiclust_selector", "TypiClustSelector"),
+    "RANDOM": ("cgmd_paper.selectors.random_selector", "RandomSelector"),
     # add more here if you want short aliases
 }
 

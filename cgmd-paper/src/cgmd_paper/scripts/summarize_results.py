@@ -1,4 +1,4 @@
-# mdmr-paper/src/mdmr_paper/scripts/summarize_results.py
+# cgmd-paper/src/cgmd_paper/scripts/summarize_results.py
 from __future__ import annotations
 
 import os

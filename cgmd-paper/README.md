@@ -1,19 +1,19 @@
-# MDMR-Paper
+# cgmd-Paper
 
 This folder contains the full experimental framework used in our paper.  
 It includes dataset loaders, feature extraction, selection methods, training routines, evaluation metrics, and scripts for reproducing results.
 
-The standalone MRMD algorithm (`mdmr/`) is available at the project root.  
-This package (`mdmr_paper`) builds on top of it to provide the full subset selection and fine-tuning pipeline.
+The standalone CGMD algorithm (`cgmd/`) is available at the project root.  
+This package (`cgmd_paper`) builds on top of it to provide the full subset selection and fine-tuning pipeline.
 
 ---
 
 ## Repository Layout
 
 ```
-mrmd/                                              # Repository root
-├── mdmr/
-│   └── mrmd.py                                    # Core MDMR algorithm
+cgmd/                                              # Repository root
+├── cgmd/
+│   └── cgmd.py                                    # Core cgmd algorithm
 │
 ├── paper/                                         # Experimental framework
 │   ├── cache/                                     # Cached features (e.g. style vectors, npy files)
@@ -23,7 +23,7 @@ mrmd/                                              # Repository root
 │   ├── models/                                    # Trained model checkpoints
 │   ├── results/                                   # Experiment results (CSV files)
 │   ├── src/                                       # All source code
-│   │   └── mdmr_paper/                            # Main folder containing all the source code for experiments
+│   │   └── cgmd_paper/                            # Main folder containing all the source code for experiments
 │   │       ├── datasets/                          # Dataset loaders
 │   │       ├── evaluation/                        # Evaluation metrics
 │   │       ├── features/                          # Feature extraction
@@ -37,7 +37,7 @@ mrmd/                                              # Repository root
 │   ├── tools/SEGMeasure                           # Official CTC SEG metric tool
 │   └── README.md                                  # Paper experiments documentation
 ├── pyproject.toml                                 # Project metadata and dependencies
-├── README.md                                      # MDMR algorithm documentation
+├── README.md                                      # CGMD algorithm documentation
 └── LICENSE                                        # License file
 ```
 
@@ -51,16 +51,16 @@ mrmd/                                              # Repository root
 - (Optional) NVIDIA driver if you want GPU acceleration
 - Clone the repository
 ```
-git clone https://github.com/eiram-mahera/mdmr.git
-cd mdmr/mdmr-paper
+git clone https://github.com/eiram-mahera/cgmd.git
+cd cgmd/cgmd-paper
 ```
 ---
 
 ### 1. [Optional] Create & activate environment
 ##### Option A) Conda environment
 ```
-conda create -n mdmr
-conda activate mdmr
+conda create -n cgmd
+conda activate cgmd
 ```
 
 #### Option B) pip + venv
@@ -107,18 +107,18 @@ conda install -c pytorch faiss-cpu     # for CPU-only
        ├── 02/          # test images
        └── 02_GT/SEG/   # test masks
    ```
-3. Dataset-specific configurations are defined in the YAML configs under `mdmr-paper/configs/datasets/ctc/`.
+3. Dataset-specific configurations are defined in the YAML configs under `cgmd-paper/configs/datasets/ctc/`.
 
 ---
 
 ## Usage
-All scripts are located in `src/mdmr_paper/scripts/`.
+All scripts are located in `src/cgmd_paper/scripts/`.
 
 ### 1. Subset Selection & Fine-tuning
 Run the main pipeline (`fine_tune.py`):
 
 ```
-python -m mdmr_paper.scripts.fine_tune \
+python -m cgmd_paper.scripts.fine_tune \
   --dataset-config configs/datasets/ctc/DIC-C2DH-HeLa.yaml \
   --model-type cyto2 \
   --selector ALL \
@@ -148,7 +148,7 @@ Key options:
 ### 2. Evaluate Pre-trained Cellpose Model
 
 ```
-python -m mdmr_paper.scripts.eval_pretrained \
+python -m cgmd_paper.scripts.eval_pretrained \
   --dataset-config configs/datasets/ctc/DIC-C2DH-HeLa.yaml \
   --model-type cyto2 \
   --results-csv results/results_pretrained.csv
@@ -157,7 +157,7 @@ python -m mdmr_paper.scripts.eval_pretrained \
 ### 3. Fully Supervised Training
 
 ```
-python -m mdmr_paper.scripts.train_fully_supervised \
+python -m cgmd_paper.scripts.train_fully_supervised \
   --dataset-config configs/datasets/ctc/DIC-C2DH-HeLa.yaml \
   --model-type cyto2 \
   --train-mode fixed --epochs 200 \
@@ -189,9 +189,9 @@ Results are appended to csv file with header:
 
 ## Extending the Framework
 
-* **Datasets**: add YAML configs under `configs/datasets/` and extend `src/mdmr_paper/datasets/` if custom preprocessing is required.
-* **Selection methods**: add a script under `src/mdmr_paper/selectors/`.
-* **Metrics**: define new metrics under `src/mdmr_paper/evaluation/`.
-* **Training**: extend `src/mdmr_paper/training/` for new training regimes.
+* **Datasets**: add YAML configs under `configs/datasets/` and extend `src/cgmd_paper/datasets/` if custom preprocessing is required.
+* **Selection methods**: add a script under `src/cgmd_paper/selectors/`.
+* **Metrics**: define new metrics under `src/cgmd_paper/evaluation/`.
+* **Training**: extend `src/cgmd_paper/training/` for new training regimes.
 
 ---
